@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import {AiFillStar, AiOutlineStar} from "react-icons/ai";
 
 export const CardWrapper=styled.div`
   display: flex;
@@ -6,7 +7,6 @@ export const CardWrapper=styled.div`
   justify-content: space-between;
   gap:18px;
   width: 288px;
-  height: 400px;
   border-radius: 8px;
   margin: 12px 8px;
   background-color: #FFFFFF;
@@ -57,7 +57,7 @@ export const DescriptionWrapper=styled.div`
 
 export const RatingWrapper=styled.div`
   display: flex;
-  margin: auto 16px;
+  margin: auto 16px 0 16px;
   gap:10px;
 `;
 
@@ -78,4 +78,12 @@ export const StyledButton=styled.button`
     background-color: #9194A5;
     cursor: not-allowed;
   }
+`;
+
+export const AiFillStarIcon=styled(AiFillStar)`
+  color:#F9A52B;
+`;
+
+export const AiOutlineStarIcon=styled(AiOutlineStar)`
+  color:#B1B5C9;
 `;

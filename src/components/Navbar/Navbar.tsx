@@ -1,15 +1,17 @@
 import React from 'react';
-import Template from "../../template/Template";
-import {Container, InputWrapper, NavWrapper } from './Navbar.styles';
+import {InputWrapper, NavWrapper, PageWrapper,Wrapper} from './Navbar.styles';
 
 const Navbar = () => {
     return (
-        <Template>
-            <Container>
+        <PageWrapper>
+            <Wrapper>
                 <NavWrapper>
                     <h2>join.tsh.io</h2>
                     <InputWrapper>
-                        <input />
+                        <input
+                            type="text"
+                            placeholder="Search"
+                        />
                         <select>
                             <option>English</option>
                             <option>French</option>
@@ -19,8 +21,8 @@ const Navbar = () => {
 
                     <img src="https://www.gravatar.com/avatar/205e460b479e2e5b48aec07710c08d50?s=200" alt="avatar" />
                 </NavWrapper>
-            </Container>
-        </Template>
+            </Wrapper>
+        </PageWrapper>
     );
 };
 

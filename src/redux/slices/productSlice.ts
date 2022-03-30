@@ -1,41 +1,17 @@
 import {createSlice, Dispatch} from "@reduxjs/toolkit";
 import axios from "axios";
+import {IProduct} from "../../model/product";
+import {IPaginationMeta} from "../../model/paginationMeta";
 
 interface IInitialState {
-    items: {
-        "id": number,
-        "name": string,
-        "description": string,
-        "rating": number,
-        "image": string,
-        "promo": boolean,
-        "active": boolean,
-    }[];
+    items: IProduct[] | never[];
+    meta: IPaginationMeta;
 }
 
-const initialState:IInitialState={
-    items: [
-        {
-            "id": 99,
-            "name": "Sleek Frozen Shoes",
-            "description": "Molestiae dolorum repellat corporis fugit in asperiores non et explicabo.",
-            "rating": 4,
-            "image": "https://picsum.photos/640/480?random=2810",
-            "promo": true,
-            "active": true
-        },
-        {
-            "id": 100,
-            "name": "Practical Fresh Bike",
-            "description": "Corporis cum voluptatum distinctio.",
-            "rating": 2,
-            "image": "https://picsum.photos/640/480?random=381",
-            "promo": true,
-            "active": false
-        }
-    ],
-
-}
+const initialState={
+    items: [],
+    meta: {},
+} as IInitialState;
 
 
 export const productSlice=createSlice({
@@ -43,7 +19,8 @@ export const productSlice=createSlice({
     initialState,
     reducers:{
         getProducts: (state,action)=>{
-
+            state.items=action.payload.items;
+            state.meta=action.payload.meta;
         },
     }
 });
@@ -52,6 +29,17 @@ export default productSlice.reducer;
 
 export const {getProducts} = productSlice.actions;
 
-export const getProductsAction=()=>async(dispatch:Dispatch)=>{
 
+//action creators
+
+const API=`https://join-tsh-api-staging.herokuapp.com/products?limit=8&page=1`;
+
+export const getProductsAction=(page:number=1)=>async(dispatch:Dispatch)=>{
+    try{
+        const response=await axios.get(`https://join-tsh-api-staging.herokuapp.com/products?limit=8&page=${page}`);
+        dispatch(getProducts(response.data));
+        console.log(response);
+    }catch(error){
+        console.log(error);
+    }
 }

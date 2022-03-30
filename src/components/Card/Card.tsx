@@ -1,27 +1,41 @@
 import React from 'react';
-import { CardWrapper, DescriptionWrapper, ImageWrapper, RatingWrapper, StyledButton } from './Card.styles';
-import {AiOutlineStar,AiFillStar} from "react-icons/ai";
+import {
+    AiFillStarIcon, AiOutlineStarIcon,
+    CardWrapper,
+    DescriptionWrapper,
+    ImageWrapper,
+    RatingWrapper,
+    StyledButton
+} from './Card.styles';
+import {IProduct} from "../../model/product";
 
-const Card = () => {
+const Card = ({id,name,description,rating,image,active,promo}:IProduct) => {
+
+    const getRating = () => {
+        let stars = [];
+        for (let i = 0; i < rating; i++) {
+            stars.push(<AiFillStarIcon key={i}/>);
+        }
+        for (let i = rating; i < 5; i++) {
+            stars.push(<AiOutlineStarIcon key={i}/>);
+        }
+        return stars;
+    };
+
     return (
         <CardWrapper>
             <ImageWrapper>
-                <span>Promo</span>
-                    <img src="https://images.unsplash.com/photo-1518791841217-8f162f1e1131?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=60" alt="shoes" />
+                {promo && <span>Promo</span>}
+                    <img src={image} alt={name} loading="eager"/>
             </ImageWrapper>
             <DescriptionWrapper>
-                <h2>Nike Running Shoes</h2>
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                    Voluptatum, quisquam.</p>
+                <h2>{name}</h2>
+                <p>{description}</p>
             </DescriptionWrapper>
             <RatingWrapper>
-                <AiFillStar />
-                <AiFillStar />
-                <AiOutlineStar />
-                <AiOutlineStar />
-                <AiOutlineStar />
+                {getRating()}
             </RatingWrapper>
-            <StyledButton disabled={false}>
+            <StyledButton disabled={!active}>
                 Show details
             </StyledButton>
         </CardWrapper>

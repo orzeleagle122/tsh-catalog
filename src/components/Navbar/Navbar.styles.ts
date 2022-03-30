@@ -1,8 +1,16 @@
 import styled from 'styled-components';
 
-
-export const Container = styled.div`
+export const PageWrapper=styled.div`
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
   background-color: #FFFFFF;
+  margin-bottom: 50px;
+  `;
+
+export const Wrapper = styled.div`
+    width: 1248px;    
 `;
 
 export const NavWrapper=styled.div`
@@ -26,4 +34,16 @@ export const InputWrapper=styled.div`
   align-items: center;
   justify-content: center;
   gap:32px;
+  
+  input {
+    width: 392px;
+    height: 48px;
+    border: 1px solid #E0E2EA;
+    font-weight: 600;
+    font-size: 14px;
+    line-height: 16px;
+    outline: none;
+    padding: 16px 0 16px 16px;
+    border-radius: 8px;
+  }
 `;

@@ -9,7 +9,14 @@ import {
 } from './Card.styles';
 import {IProduct} from "../../model/product";
 
-const Card = ({id,name,description,rating,image,active,promo}:IProduct) => {
+interface ICard {
+    item: IProduct;
+    setProductInModal: (product: IProduct) => void;
+    setIsOpenModal: (isOpen: boolean) => void;
+}
+
+const Card = ({setProductInModal, item, setIsOpenModal}:ICard) => {
+    const { promo,rating,image,active,name,description } = item
 
     const getRating = () => {
         let stars = [];
@@ -35,7 +42,10 @@ const Card = ({id,name,description,rating,image,active,promo}:IProduct) => {
             <RatingWrapper>
                 {getRating()}
             </RatingWrapper>
-            <StyledButton disabled={!active}>
+            <StyledButton disabled={!active} onClick={()=>{
+                setProductInModal(item);
+                setIsOpenModal(true);
+            }}>
                 Show details
             </StyledButton>
         </CardWrapper>

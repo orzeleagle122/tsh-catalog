@@ -6,6 +6,7 @@ import {IPaginationMeta} from "../../model/paginationMeta";
 interface IInitialState {
     items: IProduct[] | never[];
     meta: IPaginationMeta;
+    isError: boolean;
 }
 
 const initialState={

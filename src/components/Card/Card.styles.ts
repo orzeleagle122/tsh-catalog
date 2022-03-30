@@ -10,10 +10,24 @@ export const CardWrapper=styled.div`
   border-radius: 8px;
   margin: 12px 8px;
   background-color: #FFFFFF;
+  transition: all 0.3s ease-in-out;
+  overflow: hidden;
+  
+  &:hover {
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    
+    img {
+      transform: scale(1.3) rotate(5deg);
+      //transform: rotate(1deg);
+    }
+  }
+  
+  
 `;
 
 export const ImageWrapper=styled.div`
   position: relative;
+  overflow: hidden;
   
   span {
     position: absolute;
@@ -29,13 +43,15 @@ export const ImageWrapper=styled.div`
     color: #fff;
     font-weight: 600;
     line-height: 16px;
+    z-index: 2;
   }
 
   img {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    border-radius: 8px 8px 0 0 ;
+    border-radius: 8px 8px 0 0;
+    transition: all 0.3s ease-in-out;
   }
 `;
 

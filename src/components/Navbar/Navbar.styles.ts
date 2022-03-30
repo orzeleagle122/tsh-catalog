@@ -62,17 +62,19 @@ export const AccountWrapper=styled.div`
   &:hover {
     ul{
       display: block;
-    }
-    li {
       position: absolute;
       top: 100%;
       right: 0;
       width: 184px;
-      height: 56px;
-      background-color: #FFFFFF;
+      z-index: 2;
       border-radius: 8px;
+      overflow: hidden;
       box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
-      padding-left: 16px;
+    }
+    li {
+      background-color: #FFFFFF;
+      height: 56px;
+      padding: 16px;
       list-style: none;
       margin: 0;
       display: flex;
@@ -82,7 +84,6 @@ export const AccountWrapper=styled.div`
     li:hover {
       background-color: #F5F5F5;
       cursor: pointer;
-      font-weight: bold;
     }
   }
 

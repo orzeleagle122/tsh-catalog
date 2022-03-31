@@ -39,9 +39,20 @@ export const getProductsAction=(page:number=1,active?:boolean,promo?:boolean,sea
     if(active === false) active=undefined;
     if(promo === false) promo=undefined;
     try{
-        const response=await axios.get(`https://join-tsh-api-staging.herokuapp.com/products?${search ? `search=${search}` : ""}&limit=${limit}&page=${page}${active ? `&active=${active}` : ""}${promo ? `&promo=${promo}` : ""}`);
+        const response=await axios.get(
+            `https://join-tsh-api-staging.herokuapp.com/products`,
+            {
+                params:{
+                    limit,
+                    page,
+                    active,
+                    promo,
+                    search,
+                }
+            }
+        );
         dispatch(getProducts(response.data));
-        return await response;
+        return response;
     }catch(error){
         console.log(error);
     }

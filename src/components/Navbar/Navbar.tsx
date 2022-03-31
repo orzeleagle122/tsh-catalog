@@ -1,8 +1,8 @@
-import React, {useEffect} from 'react';
+import React from 'react';
 import {
-
     AccountWrapper,
-    BiSearchAlt2Icon, GrCloseIcon,
+    BiSearchAlt2Icon,
+    GrCloseIcon,
     InputWrapper,
     NavWrapper,
     OutlinedButton,
@@ -11,7 +11,6 @@ import {
     Wrapper
 } from './Navbar.styles';
 import {useAppDispatch} from "../../store";
-import {getProductsAction} from "../../redux/slices/productSlice";
 
 interface INavbarProps {
     setSearchCheckbox: (value: checkbox) => void;
@@ -30,10 +29,11 @@ const Navbar = ({searchCheckbox, setSearchCheckbox}:INavbarProps) => {
     const dispatch = useAppDispatch();
 
     const handleCheckbox = (e: React.ChangeEvent<HTMLInputElement>) => {
-            setSearchCheckbox({
-                ...searchCheckbox,
-                [e.target.name]: e.target.checked ? e.target.checked : e.target.value,
-            });
+        if (e.target.name === 'search') {
+            setSearchCheckbox({...searchCheckbox, search: e.target.value})
+        } else {
+            setSearchCheckbox({...searchCheckbox, [e.target.name]: e.target.checked})
+        }
     };
 
     return (

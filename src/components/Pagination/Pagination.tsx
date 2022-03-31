@@ -1,20 +1,30 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import {usePagination} from "../../hooks/usePagination";
 import {useAppDispatch, useAppSelector} from "../../store";
 import {getProductsAction} from "../../redux/slices/productSlice";
 import { PaginationWrapper } from './Pagination.styles';
 import {useNavigate} from "react-router-dom";
 
-const Pagination = () => {
+interface IPaginationProps {
+    setSearchCheckbox: (value: checkbox) => void;
+    searchCheckbox: checkbox;
+}
 
+interface checkbox {
+    active: boolean,
+    promo: boolean,
+}
+
+const Pagination = ({searchCheckbox, setSearchCheckbox}:IPaginationProps) => {
+    const dispatch=useAppDispatch();
     const PER_PAGE:number = 8;
     const totalPages=useAppSelector(state=>state.products.meta.totalPages);
-    const navigate = useNavigate();
-    // const [page,setPage]=useState<number>(pageParam);
 
-    const dispatch=useAppDispatch();
+    useEffect(()=>{
+        setTotal(totalPages)
+    },[totalPages])
 
-    const { total, paginate, page } = usePagination({PER_PAGE,totalPages});
+    const { total, paginate, page, setTotal } = usePagination({PER_PAGE,totalPages});
 
     const pageButton = (totalPage:number) => {
         // @ts-ignore
@@ -22,9 +32,10 @@ const Pagination = () => {
     };
 
     const handlePagination = (page:number) => {
-        dispatch(getProductsAction(page));
+        dispatch(getProductsAction(page,searchCheckbox.active,searchCheckbox.promo));
         paginate(page);
     }
+
 
     return (
         <PaginationWrapper>

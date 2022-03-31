@@ -1,4 +1,4 @@
-import {useState} from "react";
+import {useEffect, useState} from "react";
 import {useAppSelector} from "../store";
 import {useNavigate} from "react-router-dom";
 
@@ -16,6 +16,8 @@ export const usePagination = ({PER_PAGE=8,totalPages}:IUsePagination) => {
   const [perPage, setPerPage] = useState(PER_PAGE);
   const [total, setTotal] = useState(totalPages);
 
+  console.log(total)
+
   const paginate = (pageNumber: number) => {
     setPage(pageNumber);
     navigate({
@@ -24,20 +26,12 @@ export const usePagination = ({PER_PAGE=8,totalPages}:IUsePagination) => {
     });
   };
 
-  const setPerPageCount = (perPageCount: number) => {
-    setPerPage(perPageCount);
-  };
-
-  const setTotalCount = (totalCount: number) => {
-    setTotal(totalCount);
-  };
 
   return {
     page,
     perPage,
     total,
     paginate,
-    setPerPageCount,
-    setTotalCount,
+    setTotal,
   };
 };

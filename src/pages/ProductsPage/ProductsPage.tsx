@@ -7,17 +7,28 @@ import {IProduct} from "../../model/product";
 import {getProductsAction} from "../../redux/slices/productSlice";
 import Pagination from "../../components/Pagination/Pagination";
 import Modal from "../../components/Modal/Modal";
+//TODO: sterowanie inputami dać do slice lub do hooka
 
-const ProductsPage = () => {
+interface IProductsPageProps {
+    setSearchCheckbox: (value: checkbox) => void;
+    searchCheckbox: checkbox;
+}
+
+interface checkbox {
+    active: boolean,
+    promo: boolean,
+}
+
+const ProductsPage = ({searchCheckbox, setSearchCheckbox}:IProductsPageProps) => {
 
     const [isOpenModal, setIsOpenModal] = React.useState(false);
     const items=useAppSelector(state=>state.products.items);
     const [productInModal, setProductInModal] = React.useState<IProduct | null>(null);
     const dispatch=useAppDispatch();
 
-    useEffect(()=>{
-        dispatch(getProductsAction());
-    },[dispatch]);
+    useEffect(() => {
+        dispatch(getProductsAction(1,searchCheckbox.active,searchCheckbox.promo));
+    }, [searchCheckbox]);
 
 
     if(items.length===0) return <Template>Loading...</Template>;
@@ -30,6 +41,11 @@ const ProductsPage = () => {
                 {items.map((item:IProduct)=>{
                     return <Card key={item.id} item={item} setProductInModal={setProductInModal} setIsOpenModal={setIsOpenModal}/>
                 })}
+                <i aria-hidden="true"></i>
+                <i aria-hidden="true"></i>
+                <i aria-hidden="true"></i>
+                <i aria-hidden="true"></i>
+                <i aria-hidden="true"></i>
             </CardsWrapper>
 
             {isOpenModal ? (
@@ -39,8 +55,7 @@ const ProductsPage = () => {
                 />
             ) : null}
 
-            <Pagination/>
-
+            <Pagination searchCheckbox={searchCheckbox} setSearchCheckbox={setSearchCheckbox}/>
 
         </Template>
     );

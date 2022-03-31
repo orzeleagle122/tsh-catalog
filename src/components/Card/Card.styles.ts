@@ -18,11 +18,12 @@ export const CardWrapper=styled.div`
     
     img {
       transform: scale(1.3) rotate(5deg);
-      //transform: rotate(1deg);
     }
   }
   
-  
+  &:last-child {
+
+  } 
 `;
 
 export const ImageWrapper=styled.div`

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import {
 
     AccountWrapper,
@@ -10,10 +10,30 @@ import {
     SearchInput,
     Wrapper
 } from './Navbar.styles';
+import {useAppDispatch} from "../../store";
+import {getProductsAction} from "../../redux/slices/productSlice";
 
-const Navbar = () => {
+interface INavbarProps {
+    setSearchCheckbox: (value: checkbox) => void;
+    searchCheckbox: checkbox;
+}
+
+interface checkbox {
+    active: boolean,
+    promo: boolean,
+}
+
+const Navbar = ({searchCheckbox, setSearchCheckbox}:INavbarProps) => {
 
     const [isLogin, setIsLogin] = React.useState(true);
+    const dispatch = useAppDispatch();
+
+    const handleCheckbox = (e: React.ChangeEvent<HTMLInputElement>) => {
+        setSearchCheckbox({
+            ...searchCheckbox,
+            [e.target.name]: e.target.checked,
+        });
+    };
 
     return (
         <PageWrapper>
@@ -30,10 +50,10 @@ const Navbar = () => {
                             <BiSearchAlt2Icon/>
                         </SearchInput>
 
-                        <input type="checkbox" id="vehicle1" name="vehicle1" value="Bike"/>
-                        <label htmlFor="vehicle1"> Active</label>
-                        <input type="checkbox" id="vehicle2" name="vehicle2" value="Car"/>
-                        <label htmlFor="vehicle2"> Promo</label>
+                        <input type="checkbox" id="active" name="active" onChange={(e)=>handleCheckbox(e)}/>
+                        <label htmlFor="active"> Active</label>
+                        <input type="checkbox" id="promo" name="promo" onChange={(e)=>handleCheckbox(e)}/>
+                        <label htmlFor="promo"> Promo</label>
                     </InputWrapper>
 
                     <AccountWrapper>

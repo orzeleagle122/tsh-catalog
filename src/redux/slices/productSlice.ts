@@ -36,11 +36,9 @@ export const {getProducts} = productSlice.actions;
 // const API=`https://join-tsh-api-staging.herokuapp.com/products?limit=8&page=1`;
 
 export const getProductsAction=(page:number=1,active?:boolean,promo?:boolean,search:string="",limit:number=8)=>async(dispatch:Dispatch)=>{
-    console.log(active,promo);
     try{
         const response=await axios.get(`https://join-tsh-api-staging.herokuapp.com/products?search=${search}&limit=${limit}&page=${page}${active ? `&active=${active}` : ""}${promo ? `&promo=${promo}` : ""}`);
         dispatch(getProducts(response.data));
-        console.log(response);
     }catch(error){
         console.log(error);
     }

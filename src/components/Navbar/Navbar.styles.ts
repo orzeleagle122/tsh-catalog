@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import {BiSearchAlt2} from 'react-icons/bi';
+import { GrClose } from 'react-icons/gr';
 
 export const PageWrapper=styled.div`
     width: 100%;
@@ -116,6 +117,16 @@ export const BiSearchAlt2Icon=styled(BiSearchAlt2)`
   transform: translateY(-50%);
   color: #1A1B1D;
   font-size: 20px;
+  `;
+
+export const GrCloseIcon=styled(GrClose)`
+  position: absolute;
+  top: 50%;
+  right: 20px;
+  transform: translateY(-50%);
+  color: #1A1B1D;
+  font-size: 20px;
+  cursor: pointer;
   `;
 
 

@@ -17,6 +17,7 @@ interface IProductsPageProps {
 interface checkbox {
     active: boolean,
     promo: boolean,
+    search: string,
 }
 
 const ProductsPage = ({searchCheckbox, setSearchCheckbox}:IProductsPageProps) => {
@@ -27,7 +28,10 @@ const ProductsPage = ({searchCheckbox, setSearchCheckbox}:IProductsPageProps) =>
     const dispatch=useAppDispatch();
 
     useEffect(() => {
-        dispatch(getProductsAction(1,searchCheckbox.active,searchCheckbox.promo));
+        const cleanTimeout = setTimeout(() => {
+            dispatch(getProductsAction(1,searchCheckbox.active,searchCheckbox.promo,searchCheckbox.search));
+        }, 1000);
+        return () => clearTimeout(cleanTimeout);
     }, [searchCheckbox]);
 
 

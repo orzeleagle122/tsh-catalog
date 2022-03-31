@@ -7,9 +7,11 @@ import { BrowserRouter } from "react-router-dom";
 import Modal from './components/Modal/Modal';
 
 function App() {
+
     const [searchCheckbox, setSearchCheckbox] = React.useState({
         active: false,
         promo: false,
+        search: "",
     });
 
 

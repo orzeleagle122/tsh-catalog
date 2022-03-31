@@ -16,8 +16,6 @@ export const usePagination = ({PER_PAGE=8,totalPages}:IUsePagination) => {
   const [perPage, setPerPage] = useState(PER_PAGE);
   const [total, setTotal] = useState(totalPages);
 
-  console.log(total)
-
   const paginate = (pageNumber: number) => {
     setPage(pageNumber);
     navigate({

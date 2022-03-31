@@ -7,7 +7,9 @@ import {IProduct} from "../../model/product";
 import {getProductsAction} from "../../redux/slices/productSlice";
 import Pagination from "../../components/Pagination/Pagination";
 import Modal from "../../components/Modal/Modal";
+import Loader from "../../components/Loader/Loader";
 //TODO: sterowanie inputami dać do slice lub do hooka
+//TODO: ogarnąć modele
 
 interface IProductsPageProps {
     setSearchCheckbox: (value: checkbox) => void;
@@ -25,18 +27,21 @@ const ProductsPage = ({searchCheckbox, setSearchCheckbox}:IProductsPageProps) =>
     const [isOpenModal, setIsOpenModal] = React.useState(false);
     const items=useAppSelector(state=>state.products.items);
     const [productInModal, setProductInModal] = React.useState<IProduct | null>(null);
+    const [isLoading, setIsLoading] = React.useState(true);
     const dispatch=useAppDispatch();
 
     useEffect(() => {
+        setIsLoading(true);
         const cleanTimeout = setTimeout(() => {
-            dispatch(getProductsAction(1,searchCheckbox.active,searchCheckbox.promo,searchCheckbox.search));
-        }, 1000);
+            dispatch(getProductsAction(1,searchCheckbox.active,searchCheckbox.promo,searchCheckbox.search)).finally(()=>{
+                setIsLoading(false);
+            });
+        }, 500);
         return () => clearTimeout(cleanTimeout);
     }, [searchCheckbox]);
 
-
-    if(items.length===0) return <Template>Loading...</Template>;
-
+    if(isLoading) return <Loader/>;
+    if(items.length===0) return <Template>x(</Template>;
 
     return (
         <Template>
@@ -59,7 +64,7 @@ const ProductsPage = ({searchCheckbox, setSearchCheckbox}:IProductsPageProps) =>
                 />
             ) : null}
 
-            <Pagination searchCheckbox={searchCheckbox} setSearchCheckbox={setSearchCheckbox}/>
+            <Pagination searchCheckbox={searchCheckbox} setSearchCheckbox={setSearchCheckbox} setIsLoading={setIsLoading}/>
 
         </Template>
     );

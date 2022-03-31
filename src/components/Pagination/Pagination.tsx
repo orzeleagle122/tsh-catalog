@@ -7,6 +7,7 @@ import { PaginationWrapper } from './Pagination.styles';
 interface IPaginationProps {
     setSearchCheckbox: (value: checkbox) => void;
     searchCheckbox: checkbox;
+    setIsLoading: (value: boolean) => void;
 }
 
 interface checkbox {
@@ -15,7 +16,7 @@ interface checkbox {
     search: string,
 }
 
-const Pagination = ({searchCheckbox, setSearchCheckbox}:IPaginationProps) => {
+const Pagination = ({searchCheckbox, setSearchCheckbox,setIsLoading}:IPaginationProps) => {
     const dispatch=useAppDispatch();
     const PER_PAGE:number = 8;
     const totalPages=useAppSelector(state=>state.products.meta.totalPages);
@@ -32,7 +33,10 @@ const Pagination = ({searchCheckbox, setSearchCheckbox}:IPaginationProps) => {
     };
 
     const handlePagination = (page:number) => {
-        dispatch(getProductsAction(page,searchCheckbox.active,searchCheckbox.promo));
+        setIsLoading(true);
+        dispatch(getProductsAction(page,searchCheckbox.active,searchCheckbox.promo,searchCheckbox.search)).finally(()=>{
+            setIsLoading(false);
+        });
         paginate(page);
     }
 

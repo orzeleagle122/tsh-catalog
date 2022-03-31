@@ -3,7 +3,6 @@ import {usePagination} from "../../hooks/usePagination";
 import {useAppDispatch, useAppSelector} from "../../store";
 import {getProductsAction} from "../../redux/slices/productSlice";
 import { PaginationWrapper } from './Pagination.styles';
-import {useNavigate} from "react-router-dom";
 
 interface IPaginationProps {
     setSearchCheckbox: (value: checkbox) => void;
@@ -13,6 +12,7 @@ interface IPaginationProps {
 interface checkbox {
     active: boolean,
     promo: boolean,
+    search: string,
 }
 
 const Pagination = ({searchCheckbox, setSearchCheckbox}:IPaginationProps) => {

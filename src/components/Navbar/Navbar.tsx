@@ -2,7 +2,7 @@ import React, {useEffect} from 'react';
 import {
 
     AccountWrapper,
-    BiSearchAlt2Icon,
+    BiSearchAlt2Icon, GrCloseIcon,
     InputWrapper,
     NavWrapper,
     OutlinedButton,
@@ -21,6 +21,7 @@ interface INavbarProps {
 interface checkbox {
     active: boolean,
     promo: boolean,
+    search: string,
 }
 
 const Navbar = ({searchCheckbox, setSearchCheckbox}:INavbarProps) => {
@@ -29,10 +30,10 @@ const Navbar = ({searchCheckbox, setSearchCheckbox}:INavbarProps) => {
     const dispatch = useAppDispatch();
 
     const handleCheckbox = (e: React.ChangeEvent<HTMLInputElement>) => {
-        setSearchCheckbox({
-            ...searchCheckbox,
-            [e.target.name]: e.target.checked,
-        });
+            setSearchCheckbox({
+                ...searchCheckbox,
+                [e.target.name]: e.target.checked ? e.target.checked : e.target.value,
+            });
     };
 
     return (
@@ -46,8 +47,11 @@ const Navbar = ({searchCheckbox, setSearchCheckbox}:INavbarProps) => {
                                 id="search"
                                 type="text"
                                 placeholder="Search"
+                                name="search"
+                                value={searchCheckbox.search}
+                                onChange={(e) => handleCheckbox(e)}
                             />
-                            <BiSearchAlt2Icon/>
+                            {searchCheckbox.search ? <GrCloseIcon onClick={()=>setSearchCheckbox({...searchCheckbox, search:""})}/> : <BiSearchAlt2Icon/>}
                         </SearchInput>
 
                         <input type="checkbox" id="active" name="active" onChange={(e)=>handleCheckbox(e)}/>

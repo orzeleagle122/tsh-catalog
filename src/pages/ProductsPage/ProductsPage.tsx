@@ -9,6 +9,7 @@ import Pagination from '../../components/Pagination/Pagination';
 import Modal from '../../components/Modal/Modal';
 import Loader from '../../components/Loader/Loader';
 import EmptyResult from '../../components/EmptyResult/EmptyResult';
+import { useNavigate } from 'react-router-dom';
 
 const ProductsPage = () => {
   const [isOpenModal, setIsOpenModal] = React.useState(false);
@@ -17,6 +18,7 @@ const ProductsPage = () => {
     null
   );
   const [isLoading, setIsLoading] = React.useState(true);
+  const navigate = useNavigate();
   const dispatch = useAppDispatch();
   const searchCheckbox = useAppSelector((state) => state.search);
 
@@ -36,8 +38,20 @@ const ProductsPage = () => {
     };
     setIsLoading(true);
     const cleanTimeout = setTimeout(() => {
-      dispatch(getProductsAction(1, pageActive, pagePromo, pageSearch)).finally(
-        () => {
+      dispatch(getProductsAction(1, pageActive, pagePromo, pageSearch))
+        .then(response => {
+          const totalPages = response?.data.meta.totalPages;
+          if (pageParam > totalPages) {
+            const searchParams = new URLSearchParams(window.location.search);
+            searchParams.set('page', totalPages.toString());
+            console.log(searchParams.get('page'));
+            navigate({
+              pathname: '/',
+              search: searchParams.toString(),
+            });
+          }
+        })
+        .finally(() => {
           setIsLoading(false);
         }
       );
@@ -46,7 +60,12 @@ const ProductsPage = () => {
   }, [searchCheckbox]);
 
   if (isLoading) return <Loader />;
-  if (items.length === 0) return <Template><EmptyResult/></Template>;
+  if (items.length === 0)
+    return (
+      <Template>
+        <EmptyResult />
+      </Template>
+    );
 
   return (
     <Template>

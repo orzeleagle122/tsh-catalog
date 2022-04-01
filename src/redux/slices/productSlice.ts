@@ -60,6 +60,6 @@ export const getProductsAction =
       dispatch(getProducts(response.data));
       return response;
     } catch (error) {
-      console.log(error);
+      console.error(error);
     }
   };

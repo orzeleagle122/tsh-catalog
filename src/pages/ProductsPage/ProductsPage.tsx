@@ -8,6 +8,7 @@ import { getProductsAction } from '../../redux/slices/productSlice';
 import Pagination from '../../components/Pagination/Pagination';
 import Modal from '../../components/Modal/Modal';
 import Loader from '../../components/Loader/Loader';
+import EmptyResult from '../../components/EmptyResult/EmptyResult';
 
 const ProductsPage = () => {
   const [isOpenModal, setIsOpenModal] = React.useState(false);
@@ -45,7 +46,7 @@ const ProductsPage = () => {
   }, [searchCheckbox]);
 
   if (isLoading) return <Loader />;
-  if (items.length === 0) return <Template>x(</Template>;
+  if (items.length === 0) return <Template><EmptyResult/></Template>;
 
   return (
     <Template>

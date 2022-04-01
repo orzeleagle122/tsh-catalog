@@ -1,39 +1,38 @@
 import React, {useEffect} from 'react';
 import Card from '../../components/Card/Card';
 import Template from "../../template/Template";
-import { CardsWrapper } from './ProductsPage.styles';
+import {CardsWrapper} from './ProductsPage.styles';
 import {useAppDispatch, useAppSelector} from "../../store";
 import {IProduct} from "../../model/product";
 import {getProductsAction} from "../../redux/slices/productSlice";
 import Pagination from "../../components/Pagination/Pagination";
 import Modal from "../../components/Modal/Modal";
 import Loader from "../../components/Loader/Loader";
-//TODO: sterowanie inputami dać do slice lub do hooka
-//TODO: ogarnąć modele
 
-interface IProductsPageProps {
-    setSearchCheckbox: (value: checkbox) => void;
-    searchCheckbox: checkbox;
-}
-
-interface checkbox {
-    active: boolean,
-    promo: boolean,
-    search: string,
-}
-
-const ProductsPage = ({searchCheckbox, setSearchCheckbox}:IProductsPageProps) => {
+const ProductsPage = () => {
 
     const [isOpenModal, setIsOpenModal] = React.useState(false);
     const items=useAppSelector(state=>state.products.items);
     const [productInModal, setProductInModal] = React.useState<IProduct | null>(null);
     const [isLoading, setIsLoading] = React.useState(true);
     const dispatch=useAppDispatch();
+    const searchCheckbox = useAppSelector(state=>state.search);
 
     useEffect(() => {
+        const searchParams= new URLSearchParams(window.location.search);
+        const pageParam=parseInt(searchParams.get('page') as string,10);
+        const pageActive=searchParams.get('active') ? true : false;
+        const pagePromo=searchParams.get('promo') ? true : false;
+        const pageSearch=searchParams.get('search') ? `${searchParams.get('search')}` : '';
+
+        const options={
+            active:pageActive,
+            promo:pagePromo,
+            search:pageSearch ? pageSearch : '',
+        }
         setIsLoading(true);
         const cleanTimeout = setTimeout(() => {
-            dispatch(getProductsAction(1,searchCheckbox.active,searchCheckbox.promo,searchCheckbox.search)).finally(()=>{
+            dispatch(getProductsAction(1,pageActive,pagePromo,pageSearch)).finally(()=>{
                 setIsLoading(false);
             });
         }, 500);
@@ -64,7 +63,7 @@ const ProductsPage = ({searchCheckbox, setSearchCheckbox}:IProductsPageProps) =>
                 />
             ) : null}
 
-            <Pagination searchCheckbox={searchCheckbox} setSearchCheckbox={setSearchCheckbox} setIsLoading={setIsLoading}/>
+            <Pagination setIsLoading={setIsLoading}/>
 
         </Template>
     );

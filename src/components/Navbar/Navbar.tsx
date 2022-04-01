@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import {
     AccountWrapper,
     BiSearchAlt2Icon,
@@ -10,29 +10,44 @@ import {
     SearchInput,
     Wrapper
 } from './Navbar.styles';
-import {useAppDispatch} from "../../store";
+import {useAppDispatch, useAppSelector} from "../../store";
+import {reset, search} from '../../redux/slices/searchSlice';
+import {useNavigate} from "react-router-dom";
+//TODO: poprawić resetowanie wyszukiwania
 
-interface INavbarProps {
-    setSearchCheckbox: (value: checkbox) => void;
-    searchCheckbox: checkbox;
-}
-
-interface checkbox {
-    active: boolean,
-    promo: boolean,
-    search: string,
-}
-
-const Navbar = ({searchCheckbox, setSearchCheckbox}:INavbarProps) => {
+const Navbar = () => {
 
     const [isLogin, setIsLogin] = React.useState(true);
     const dispatch = useAppDispatch();
+    const searchCheckbox = useAppSelector(state=>state.search);
+    const navigate=useNavigate();
+
+    const searchParams= new URLSearchParams(window.location.search);
+    const pageParam=parseInt(searchParams.get('page') as string,10);
+    const pageActive=searchParams.get('active');
+    const pagePromo=searchParams.get('promo');
+    const pageSearch=searchParams.get('search');
+    const options={
+        active:pageActive === 'true',
+        promo:pagePromo === 'true',
+        search:pageSearch ? pageSearch : '',
+    }
+
+    useEffect(()=>{
+        dispatch(search(options));
+    },[]);
+
+    useEffect(()=>{
+        navigate({
+        pathname:'/',
+        search:`${pageParam ? `page=${pageParam}` : ""}${searchCheckbox.search ? `&search=${searchCheckbox.search}` : ""}${searchCheckbox.active ? `&active=${searchCheckbox.active}` : ""}${searchCheckbox.promo ? `&promo=${searchCheckbox.promo}` : ""}`,
+    });},[searchCheckbox]);
 
     const handleCheckbox = (e: React.ChangeEvent<HTMLInputElement>) => {
         if (e.target.name === 'search') {
-            setSearchCheckbox({...searchCheckbox, search: e.target.value})
+            dispatch(search({search: e.target.value}));
         } else {
-            setSearchCheckbox({...searchCheckbox, [e.target.name]: e.target.checked})
+            dispatch(search({[e.target.name]: e.target.checked}));
         }
     };
 
@@ -51,12 +66,15 @@ const Navbar = ({searchCheckbox, setSearchCheckbox}:INavbarProps) => {
                                 value={searchCheckbox.search}
                                 onChange={(e) => handleCheckbox(e)}
                             />
-                            {searchCheckbox.search ? <GrCloseIcon onClick={()=>setSearchCheckbox({...searchCheckbox, search:""})}/> : <BiSearchAlt2Icon/>}
+                            {searchCheckbox.search ? <GrCloseIcon onClick={()=> {
+                                dispatch(reset());
+                                // dispatch(getProductsAction(1,false,false,""));
+                            }}/> : <BiSearchAlt2Icon/>}
                         </SearchInput>
 
-                        <input type="checkbox" id="active" name="active" onChange={(e)=>handleCheckbox(e)}/>
+                        <input type="checkbox" id="active" name="active" checked={searchCheckbox.active} onChange={(e)=>handleCheckbox(e)}/>
                         <label htmlFor="active"> Active</label>
-                        <input type="checkbox" id="promo" name="promo" onChange={(e)=>handleCheckbox(e)}/>
+                        <input type="checkbox" id="promo" name="promo" checked={searchCheckbox.promo} onChange={(e)=>handleCheckbox(e)}/>
                         <label htmlFor="promo"> Promo</label>
                     </InputWrapper>
 

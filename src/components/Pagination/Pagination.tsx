@@ -2,30 +2,23 @@ import React, {useEffect} from 'react';
 import {usePagination} from "../../hooks/usePagination";
 import {useAppDispatch, useAppSelector} from "../../store";
 import {getProductsAction} from "../../redux/slices/productSlice";
-import { PaginationWrapper } from './Pagination.styles';
+import {PaginationWrapper} from './Pagination.styles';
 
 interface IPaginationProps {
-    setSearchCheckbox: (value: checkbox) => void;
-    searchCheckbox: checkbox;
     setIsLoading: (value: boolean) => void;
 }
 
-interface checkbox {
-    active: boolean,
-    promo: boolean,
-    search: string,
-}
-
-const Pagination = ({searchCheckbox, setSearchCheckbox,setIsLoading}:IPaginationProps) => {
+const Pagination = ({setIsLoading}:IPaginationProps) => {
     const dispatch=useAppDispatch();
     const PER_PAGE:number = 8;
     const totalPages=useAppSelector(state=>state.products.meta.totalPages);
+    const searchCheckbox = useAppSelector(state=>state.search);
 
     useEffect(()=>{
         setTotal(totalPages)
-    },[totalPages])
+    },[totalPages,searchCheckbox])
 
-    const { total, paginate, page, setTotal } = usePagination({PER_PAGE,totalPages});
+    const { total, paginate, page, setTotal } = usePagination({PER_PAGE,totalPages,searchCheckbox});
 
     const pageButton = (totalPage:number) => {
         // @ts-ignore

@@ -10,13 +10,14 @@ import {
   SearchInput,
   Wrapper,
 } from './Navbar.styles';
-import { useAppDispatch, useAppSelector } from '../../store';
-import { reset, search } from '../../redux/slices/searchSlice';
+import { useAppDispatch, useAppSelector } from '../../../store';
+import { reset, search } from '../../../redux/slices/searchSlice';
 import { useNavigate } from 'react-router-dom';
-//TODO: poprawić resetowanie wyszukiwania
+import Input from '../../atoms/Input/Input.styles';
+import Button from '../../atoms/Button/Button.styles';
 
 const Navbar = () => {
-  const [isLogin, setIsLogin] = React.useState(true);
+  const [isLogin, setIsLogin] = React.useState(false);
   const dispatch = useAppDispatch();
   const searchCheckbox = useAppSelector((state) => state.search);
   const navigate = useNavigate();
@@ -62,7 +63,7 @@ const Navbar = () => {
           <h2>join.tsh.io</h2>
           <InputWrapper>
             <SearchInput>
-              <input
+              <Input
                 id="search"
                 type="text"
                 placeholder="Search"
@@ -113,7 +114,7 @@ const Navbar = () => {
                 </ul>
               </>
             ) : (
-              <OutlinedButton>Login in</OutlinedButton>
+              <Button outlined>Login in</Button>
             )}
           </AccountWrapper>
         </NavWrapper>

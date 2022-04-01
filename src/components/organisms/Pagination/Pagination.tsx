@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
-import { usePagination } from '../../hooks/usePagination';
-import { useAppDispatch, useAppSelector } from '../../store';
-import { getProductsAction } from '../../redux/slices/productSlice';
+import { usePagination } from '../../../hooks/usePagination';
+import { useAppDispatch, useAppSelector } from '../../../store';
+import { getProductsAction } from '../../../redux/slices/productSlice';
 import { PaginationWrapper } from './Pagination.styles';
 
 interface IPaginationProps {

@@ -1,7 +1,17 @@
-import React from 'react';
+import React, { useEffect } from 'react';
+import Input from '../../components/atoms/Input/Input.styles';
 import { FormContainer, FormWrapper, Header, ImgWrapper, Wrapper } from './LoginPage.styles';
+import Button from '../../components/atoms/Button/Button.styles';
 
 const LoginPage = () => {
+
+  useEffect(()=>{
+    const disableScroll = () => {
+      document.body.style.overflow = 'hidden';
+    }
+    disableScroll();
+  },[])
+
   return (
     <Wrapper>
       <ImgWrapper />
@@ -10,12 +20,13 @@ const LoginPage = () => {
           <h1>join.tsh.io</h1>
         </Header>
         <FormContainer>
-          <form action="/action_page.php">
-            <label htmlFor="fname">First name:</label>
-            <input type="text" id="fname" name="fname" value="John" />
-            <label htmlFor="lname">Last name:</label>
-            <input type="text" id="lname" name="lname" value="Doe" />
-            <button type="submit"> sign in</button>
+          <h1>Login</h1>
+          <form >
+            <label htmlFor="fname">Username</label>
+            <Input type="text" id="fname" name="fname" />
+            <label htmlFor="lname">Password</label>
+            <Input type="text" id="lname" name="lname"/>
+            <Button type="submit">Log in</Button>
           </form>
         </FormContainer>
       </FormWrapper>

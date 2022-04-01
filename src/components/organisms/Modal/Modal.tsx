@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import ReactDOM from 'react-dom';
 import styled from 'styled-components';
 import { GrClose } from 'react-icons/gr';
-import { IProduct } from '../../model/product';
+import { IProduct } from '../../../model/product';
 import {
   CloseButton,
   DescriptionWrapper,

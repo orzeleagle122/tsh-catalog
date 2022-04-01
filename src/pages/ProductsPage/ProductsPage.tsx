@@ -1,14 +1,14 @@
 import React, { useEffect } from 'react';
-import Card from '../../components/Card/Card';
+import Card from '../../components/molecules/Card/Card';
 import Template from '../../template/Template';
 import { CardsWrapper } from './ProductsPage.styles';
 import { useAppDispatch, useAppSelector } from '../../store';
 import { IProduct } from '../../model/product';
 import { getProductsAction } from '../../redux/slices/productSlice';
-import Pagination from '../../components/Pagination/Pagination';
-import Modal from '../../components/Modal/Modal';
-import Loader from '../../components/Loader/Loader';
-import EmptyResult from '../../components/EmptyResult/EmptyResult';
+import Pagination from '../../components/organisms/Pagination/Pagination';
+import Modal from '../../components/organisms/Modal/Modal';
+import Loader from '../../components/molecules/Loader/Loader';
+import EmptyResult from '../../components/molecules/EmptyResult/EmptyResult';
 import { useNavigate } from 'react-router-dom';
 
 const ProductsPage = () => {

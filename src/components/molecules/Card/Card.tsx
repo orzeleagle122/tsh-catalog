@@ -8,7 +8,7 @@ import {
   RatingWrapper,
   StyledButton,
 } from './Card.styles';
-import { IProduct } from '../../model/product';
+import { IProduct } from '../../../model/product';
 
 interface ICard {
   item: IProduct;

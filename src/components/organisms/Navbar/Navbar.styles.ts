@@ -93,7 +93,7 @@ export const SearchInput = styled.div`
   margin-right: 24px;
   position: relative;
 
-  input[id^='search'] {
+  input {
     width: 100%;
     height: 100%;
     border: 1px solid #e0e2ea;

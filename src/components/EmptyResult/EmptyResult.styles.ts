@@ -33,12 +33,12 @@ export const Container = styled.div`
     font-weight: 600;
     font-size: 14px;
     line-height: 16px;
-    color: #9194A5;
+    color: #9194a5;
   }
 `;
 
 export const HiOutlineDocumentSearchIcon = styled(HiOutlineDocumentSearch)`
   font-size: 80px;
-  color: #9194A5;
+  color: #9194a5;
   margin-bottom: 22px;
 `;

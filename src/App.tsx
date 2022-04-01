@@ -1,17 +1,18 @@
 import React from 'react';
 import Navbar from './components/Navbar/Navbar';
 import GlobalStyle from './theme/global.styles';
-import Card from './components/Card/Card';
 import ProductsPage from './pages/ProductsPage/ProductsPage';
-import { BrowserRouter } from 'react-router-dom';
-import Modal from './components/Modal/Modal';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import LoginPage from './pages/LoginPage/LoginPage';
 
 function App() {
   return (
     <BrowserRouter>
       <GlobalStyle />
-      <Navbar />
-      <ProductsPage />
+      <Routes>
+        <Route path="/" element={<><Navbar /><ProductsPage /></>}/>
+        <Route path="/login" element={<LoginPage/>}/>
+      </Routes>
     </BrowserRouter>
   );
 }

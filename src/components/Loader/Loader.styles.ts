@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-export const LoaderWrapper=styled.div`
+export const LoaderWrapper = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
@@ -47,5 +47,4 @@ export const LoaderWrapper=styled.div`
       transform: rotate(360deg);
     }
   }
-
-`
+`;

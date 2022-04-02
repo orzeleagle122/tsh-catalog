@@ -5,21 +5,24 @@ import {
   GrCloseIcon,
   InputWrapper,
   NavWrapper,
-  OutlinedButton,
   PageWrapper,
   SearchInput,
   Wrapper,
 } from './Navbar.styles';
 import { useAppDispatch, useAppSelector } from '../../../store';
 import { reset, search } from '../../../redux/slices/searchSlice';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import Input from '../../atoms/Input/Input.styles';
 import Button from '../../atoms/Button/Button.styles';
+import { logOutAction, setUserAction } from '../../../redux/slices/userSlice';
 
 const Navbar = () => {
-  const [isLogin, setIsLogin] = React.useState(false);
   const dispatch = useAppDispatch();
   const searchCheckbox = useAppSelector((state) => state.search);
+  const user = useAppSelector((state) => state.user);
+  // const { avatar } = user.user.user;
+  const { isLogin } = user;
+
   const navigate = useNavigate();
 
   const searchParams = new URLSearchParams(window.location.search);
@@ -35,6 +38,7 @@ const Navbar = () => {
 
   useEffect(() => {
     dispatch(search(options));
+    dispatch(setUserAction());
   }, []);
 
   useEffect(() => {
@@ -75,7 +79,6 @@ const Navbar = () => {
                 <GrCloseIcon
                   onClick={() => {
                     dispatch(reset());
-                    // dispatch(getProductsAction(1,false,false,""));
                   }}
                 />
               ) : (
@@ -105,16 +108,27 @@ const Navbar = () => {
             {isLogin ? (
               <>
                 <img
+                  // src={avatar ? avatar : 'https://www.gravatar.com/avatar/205e460b479e2e5b48aec07710c08d50?s=200'}
                   src="https://www.gravatar.com/avatar/205e460b479e2e5b48aec07710c08d50?s=200"
                   alt="avatar"
                 />
                 <ul>
-                  <li>Logout</li>
-                  <li>Logout</li>
+                  <li>Your Account</li>
+                  <li
+                    onClick={() => {
+                      dispatch(logOutAction());
+                    }}
+                  >
+                    Logout
+                  </li>
                 </ul>
               </>
             ) : (
-              <Button outlined>Login in</Button>
+              <Link to="/login">
+                <Button outlined animated>
+                  Login
+                </Button>
+              </Link>
             )}
           </AccountWrapper>
         </NavWrapper>

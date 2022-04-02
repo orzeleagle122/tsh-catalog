@@ -13,14 +13,15 @@ import { useNavigate } from 'react-router-dom';
 
 const ProductsPage = () => {
   const [isOpenModal, setIsOpenModal] = React.useState(false);
-  const items = useAppSelector((state) => state.products.items);
   const [productInModal, setProductInModal] = React.useState<IProduct | null>(
     null
   );
   const [isLoading, setIsLoading] = React.useState(true);
   const navigate = useNavigate();
+
   const dispatch = useAppDispatch();
   const searchCheckbox = useAppSelector((state) => state.search);
+  const items = useAppSelector((state) => state.products.items);
 
   useEffect(() => {
     const searchParams = new URLSearchParams(window.location.search);
@@ -31,11 +32,6 @@ const ProductsPage = () => {
       ? `${searchParams.get('search')}`
       : '';
 
-    const options = {
-      active: pageActive,
-      promo: pagePromo,
-      search: pageSearch ? pageSearch : '',
-    };
     setIsLoading(true);
     const cleanTimeout = setTimeout(() => {
       dispatch(getProductsAction(1, pageActive, pagePromo, pageSearch))

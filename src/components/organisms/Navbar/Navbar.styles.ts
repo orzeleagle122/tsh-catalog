@@ -12,7 +12,7 @@ export const PageWrapper = styled.div`
 
 export const Wrapper = styled.div`
   width: 1248px;
-  @media (max-width: 375px) {
+  @media (max-width: 420px) {
     width: 100%;
   }
 `;
@@ -26,7 +26,7 @@ export const NavWrapper = styled.div`
   height: 144px;
   gap: 105px;
 
-  @media (max-width: 375px) {
+  @media (max-width: 420px) {
     height: 248px;
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -47,7 +47,7 @@ export const InputWrapper = styled.div`
   align-items: center;
   justify-content: center;
 
-  @media (max-width: 375px) {
+  @media (max-width: 420px) {
     grid-area: searchInput;
     margin-top: -150px;
     display: grid;
@@ -76,7 +76,7 @@ export const InputWrapper = styled.div`
 export const ActiveCheckBoxWrapper = styled.div`
   display: flex;
   align-items: center;
-  @media (max-width: 375px) {
+  @media (max-width: 420px) {
     grid-area: activ;
     margin-top: 24px;
   }
@@ -85,7 +85,7 @@ export const ActiveCheckBoxWrapper = styled.div`
 export const PromoCheckBoxWrapper = styled.div`
   display: flex;
   align-items: center;
-  @media (max-width: 375px) {
+  @media (max-width: 420px) {
     grid-area: promo;
     margin-top: 24px;
   }
@@ -96,7 +96,7 @@ export const AccountWrapper = styled.div`
   margin-left: auto;
   display: inline-block;
 
-  @media (max-width: 375px) {
+  @media (max-width: 420px) {
     grid-area: avatar;
   }
 
@@ -145,7 +145,7 @@ export const SearchInput = styled.div`
   margin-right: 24px;
   position: relative;
 
-  @media (max-width: 375px) {
+  @media (max-width: 420px) {
     width: 100%;
     margin-right: 0px;
     grid-area: search;

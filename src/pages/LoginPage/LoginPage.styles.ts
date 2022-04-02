@@ -8,7 +8,7 @@ export const Wrapper = styled.div`
   gap: 150px;
   background-color: #fff;
 
-  @media (max-width: 375px) {
+  @media (max-width: 420px) {
     padding: 40px 24px 0 24px;
     height: calc(100vh);
   }
@@ -21,7 +21,7 @@ export const ImgWrapper = styled.div`
   background-size: cover;
   background-position: center;
   
-  @media screen and (max-width: 375px) {
+  @media screen and (max-width: 420px) {
     display: none;
   }
 `;
@@ -29,7 +29,7 @@ export const ImgWrapper = styled.div`
 export const FormWrapper = styled.div`
   width: 60%;
 
-  @media (max-width: 375px) {
+  @media (max-width: 420px) {
     width: 100%;;
   }
 `;
@@ -38,7 +38,7 @@ export const Header = styled.nav`
   display: flex;
   align-items: center;
   height: 144px;
-  @media screen and (max-width: 375px) {
+  @media screen and (max-width: 420px) {
     height: 40px;
   }
   
@@ -48,7 +48,7 @@ export const FormContainer = styled.div`
   margin-top: 183px;
   width: 100%;
 
-  @media screen and (max-width: 375px) {
+  @media screen and (max-width: 420px) {
     margin-top: 103px;
   }
 

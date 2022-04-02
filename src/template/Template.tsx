@@ -14,6 +14,11 @@ const Wrapper = styled.div`
   width: 1248px;
   background-color: #F2F2F2;
   margin-top: 50px;
+
+  @media (max-width: 375px) {
+    width: 100%;
+  }
+  
 `;
 
 interface TemplateProps {

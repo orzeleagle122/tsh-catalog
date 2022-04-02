@@ -26,9 +26,9 @@ export const ModalWrapper = styled.div`
   flex-direction: column;
   gap: 10px;
   overflow: auto;
-  @media only screen and (max-width: 600px) {
-    width: 100%;
-    height: 100%;
+  @media only screen and (max-width: 375px) {
+    width: 80%;
+    height: 80%;
   }
 `;
 
@@ -43,6 +43,10 @@ export const DescriptionWrapper = styled.div`
     font-size: 24px;
     line-height: 40px;
     color: #1a1b1d;
+    @media only screen and (max-width: 375px) {
+      font-size: 18px;
+      line-height: initial;
+    }
   }
 
   p {
@@ -50,6 +54,11 @@ export const DescriptionWrapper = styled.div`
     font-size: 18px;
     line-height: 24px;
     color: #9194a5;
+
+    @media only screen and (max-width: 375px) {
+      font-size: 14px;
+      line-height: initial;
+    }
   }
 `;
 
@@ -57,6 +66,10 @@ export const ImageWrapper = styled.div`
   position: relative;
   width: 100%;
   height: 350px;
+
+  @media only screen and (max-width: 375px) {
+    max-height: 250px;
+  }
 
   img {
     width: 100%;
@@ -73,10 +86,7 @@ export const CloseButton = styled.button`
   background-color: transparent;
   top: 20px;
   right: 20px;
-  @media only screen and (max-width: 600px) {
-    width: 35px;
-    height: 35px;
-  }
+  
   svg {
     background-color: inherit;
   }

@@ -2,9 +2,11 @@ import styled from 'styled-components';
 
 export const PaginationWrapper = styled.div`
   display: flex;
+  flex-wrap: wrap;
   align-items: center;
   justify-content: center;
   margin-bottom: 56px;
+  
 
   button {
     border: none;

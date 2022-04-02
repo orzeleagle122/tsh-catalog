@@ -10,8 +10,16 @@ function App() {
     <BrowserRouter>
       <GlobalStyle />
       <Routes>
-        <Route path="/" element={<><Navbar /><ProductsPage /></>}/>
-        <Route path="/login" element={<LoginPage/>}/>
+        <Route
+          path="/"
+          element={
+            <>
+              <Navbar />
+              <ProductsPage />
+            </>
+          }
+        />
+        <Route path="/login" element={<LoginPage />} />
       </Routes>
     </BrowserRouter>
   );

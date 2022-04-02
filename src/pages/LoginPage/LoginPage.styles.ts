@@ -81,7 +81,7 @@ export const FormContainer = styled.div`
     }
   }
 
-  p {
+  span {
     color: red;
     font-weight: 600;
     display: flex;

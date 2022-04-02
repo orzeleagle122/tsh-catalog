@@ -82,7 +82,7 @@ const LoginPage = () => {
                   placeholder="Enter password"
                   autoComplete="false"
                 />
-                {isError && <p>{isError}</p>}
+                {isError && <span>{isError}</span>}
                 <Button height={48} type="submit">Log in</Button>
                 <p>Forgot password?</p>
               </>

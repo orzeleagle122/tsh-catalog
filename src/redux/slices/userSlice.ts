@@ -106,7 +106,6 @@ export const setUserAction =
       }
     } catch (error) {
       dispatch(setError("Wrong username or password!"));
-      console.log(error);
       dispatch(setLoading(false));
     }
   };

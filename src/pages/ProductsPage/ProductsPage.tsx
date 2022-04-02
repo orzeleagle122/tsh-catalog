@@ -40,7 +40,6 @@ const ProductsPage = () => {
           if (pageParam > totalPages) {
             const searchParams = new URLSearchParams(window.location.search);
             searchParams.set('page', totalPages.toString());
-            console.log(searchParams.get('page'));
             navigate({
               pathname: '/',
               search: searchParams.toString(),

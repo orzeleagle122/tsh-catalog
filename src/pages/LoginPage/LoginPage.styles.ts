@@ -4,34 +4,53 @@ import logo from '../../assets/images/login.png';
 export const Wrapper = styled.div`
   display: flex;
   width: 100%;
-  height: 100vh !important;
+  height: 100vh;
   gap: 150px;
   background-color: #fff;
+
+  @media (max-width: 375px) {
+    padding: 40px 24px 0 24px;
+    height: calc(100vh);
+  }
+  
 `;
 
 export const ImgWrapper = styled.div`
   background-image: url(${logo});
   width: 40%;
-  height: 100vh;
   background-size: cover;
   background-position: center;
+  
+  @media screen and (max-width: 375px) {
+    display: none;
+  }
 `;
 
 export const FormWrapper = styled.div`
   width: 60%;
-  height: 100%;
+
+  @media (max-width: 375px) {
+    width: 100%;;
+  }
 `;
 
 export const Header = styled.nav`
   display: flex;
   align-items: center;
   height: 144px;
+  @media screen and (max-width: 375px) {
+    height: 40px;
+  }
+  
 `;
 
 export const FormContainer = styled.div`
   margin-top: 183px;
-  height: 100%;
   width: 100%;
+
+  @media screen and (max-width: 375px) {
+    margin-top: 103px;
+  }
 
   h1 {
     font-weight: 600;

@@ -13,7 +13,7 @@ const GlobalStyle = createGlobalStyle`
     }
   }
   body {
-    background-color: #F2F2F2;
+    background-color: #FFFFFF;
   },
 
 `;

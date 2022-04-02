@@ -8,7 +8,6 @@ export const PageWrapper = styled.div`
   align-items: center;
   justify-content: center;
   background-color: #ffffff;
-  margin-bottom: 50px;
 `;
 
 export const Wrapper = styled.div`
@@ -18,16 +17,28 @@ export const Wrapper = styled.div`
 export const NavWrapper = styled.div`
   display: flex;
   justify-content: flex-start;
+  flex-wrap: wrap;
   align-items: center;
   width: 100%;
   height: 144px;
   gap: 105px;
+  
+  @media (max-width: 375px) {
+    height: 248px;
+    gap: 0;
+  }
+  
 `;
 
 export const InputWrapper = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
+
+  @media (max-width: 375px) {
+    flex-wrap: wrap;
+    flex-direction: column;
+  }
 
   input[type='checkbox'] {
     border: 1px solid #e0e2ea;

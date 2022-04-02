@@ -5,7 +5,7 @@ export const CardsWrapper = styled.div`
   flex-wrap: wrap;
   justify-content: space-between;
 
-  @media (max-width: 375px) {
+  @media (max-width: 420px) {
     align-items: center;
     justify-content: center;
     flex-direction: column;

@@ -69,6 +69,7 @@ const LoginPage = () => {
                   onChange={handleChange}
                   required
                   placeholder="Enter username"
+                  autoComplete="false"
                 />
                 <label htmlFor="password">Password</label>
                 <Input
@@ -79,6 +80,7 @@ const LoginPage = () => {
                   onChange={handleChange}
                   required
                   placeholder="Enter password"
+                  autoComplete="false"
                 />
                 {isError && <p>{isError}</p>}
                 <Button height={48} type="submit">Log in</Button>

@@ -26,7 +26,7 @@ export const ModalWrapper = styled.div`
   flex-direction: column;
   gap: 10px;
   overflow: auto;
-  @media only screen and (max-width: 375px) {
+  @media only screen and (max-width: 420px) {
     width: 80%;
     height: 80%;
   }
@@ -43,7 +43,7 @@ export const DescriptionWrapper = styled.div`
     font-size: 24px;
     line-height: 40px;
     color: #1a1b1d;
-    @media only screen and (max-width: 375px) {
+    @media only screen and (max-width: 420px) {
       font-size: 18px;
       line-height: initial;
     }
@@ -55,7 +55,7 @@ export const DescriptionWrapper = styled.div`
     line-height: 24px;
     color: #9194a5;
 
-    @media only screen and (max-width: 375px) {
+    @media only screen and (max-width: 420px) {
       font-size: 14px;
       line-height: initial;
     }
@@ -67,7 +67,7 @@ export const ImageWrapper = styled.div`
   width: 100%;
   height: 350px;
 
-  @media only screen and (max-width: 375px) {
+  @media only screen and (max-width: 420px) {
     max-height: 250px;
   }
 

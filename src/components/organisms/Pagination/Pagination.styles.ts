@@ -5,8 +5,7 @@ export const PaginationWrapper = styled.div`
   flex-wrap: wrap;
   align-items: center;
   justify-content: center;
-  margin-bottom: 56px;
-  
+  margin-bottom: 56px;  
 
   button {
     border: none;

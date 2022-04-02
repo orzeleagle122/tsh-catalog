@@ -76,6 +76,7 @@ const Navbar = () => {
                 name="search"
                 value={searchCheckbox.search}
                 onChange={(e) => handleCheckbox(e)}
+                autoComplete="false"
               />
               {searchCheckbox.search ? (
                 <GrCloseIcon
@@ -94,6 +95,7 @@ const Navbar = () => {
                 name="active"
                 checked={searchCheckbox.active}
                 onChange={(e) => handleCheckbox(e)}
+                autoComplete="false"
               />
               <label htmlFor="active"> Active</label>
             </ActiveCheckBoxWrapper>

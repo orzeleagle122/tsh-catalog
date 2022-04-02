@@ -12,6 +12,9 @@ export const PageWrapper = styled.div`
 
 export const Wrapper = styled.div`
   width: 1248px;
+  @media (max-width: 375px) {
+    width: 100%;
+  }
 `;
 
 export const NavWrapper = styled.div`
@@ -22,12 +25,21 @@ export const NavWrapper = styled.div`
   width: 100%;
   height: 144px;
   gap: 105px;
-  
+
   @media (max-width: 375px) {
     height: 248px;
-    gap: 0;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 50px 100px;
+    grid-template-areas:
+      'header avatar'
+      'searchInput searchInput';
+    padding: 52px 24px 32px 24px;
+
+    h2 {
+      grid-area: header;
+    }
   }
-  
 `;
 
 export const InputWrapper = styled.div`
@@ -36,8 +48,15 @@ export const InputWrapper = styled.div`
   justify-content: center;
 
   @media (max-width: 375px) {
-    flex-wrap: wrap;
-    flex-direction: column;
+    grid-area: searchInput;
+    margin-top: -150px;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: 50px 50px;
+    grid-template-areas:
+      'search search search'
+      'activ promo promo';
+  }
   }
 
   input[type='checkbox'] {
@@ -46,7 +65,7 @@ export const InputWrapper = styled.div`
     width: 24px;
     height: 24px;
     background-color: #ffffff;
-    margin-right: 8px;
+    margin-right: 8px;    
   }
 
   label {
@@ -54,10 +73,32 @@ export const InputWrapper = styled.div`
   }
 `;
 
+export const ActiveCheckBoxWrapper = styled.div`
+  display: flex;
+  align-items: center;
+  @media (max-width: 375px) {
+    grid-area: activ;
+    margin-top: 24px;
+  }
+`;
+
+export const PromoCheckBoxWrapper = styled.div`
+  display: flex;
+  align-items: center;
+  @media (max-width: 375px) {
+    grid-area: promo;
+    margin-top: 24px;
+  }
+`;
+
 export const AccountWrapper = styled.div`
   position: relative;
   margin-left: auto;
   display: inline-block;
+
+  @media (max-width: 375px) {
+    grid-area: avatar;
+  }
 
   img {
     width: 48px;
@@ -104,6 +145,12 @@ export const SearchInput = styled.div`
   margin-right: 24px;
   position: relative;
 
+  @media (max-width: 375px) {
+    width: 100%;
+    margin-right: 0px;
+    grid-area: search;
+  }
+
   input {
     width: 100%;
     height: 100%;
@@ -134,31 +181,4 @@ export const GrCloseIcon = styled(GrClose)`
   color: #1a1b1d;
   font-size: 20px;
   cursor: pointer;
-`;
-
-export const OutlinedButton = styled.button`
-  width: 88px;
-  height: 38px;
-  font-weight: 600;
-  font-size: 14px;
-  line-height: 16px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: #4460f7;
-  border: 1px solid #4460f7;
-  border-radius: 4px;
-  background-color: #ffffff;
-  cursor: pointer;
-
-  &:hover {
-    border: 1px solid #2140e8;
-  }
-
-  &:disabled {
-    border: 1px solid #9194a5;
-    color: #9194a5;
-    background-color: #ffffff;
-    cursor: not-allowed;
-  }
 `;

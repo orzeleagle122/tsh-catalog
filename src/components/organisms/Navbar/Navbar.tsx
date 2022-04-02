@@ -1,11 +1,13 @@
 import React, { useEffect } from 'react';
 import {
   AccountWrapper,
+  ActiveCheckBoxWrapper,
   BiSearchAlt2Icon,
   GrCloseIcon,
   InputWrapper,
   NavWrapper,
   PageWrapper,
+  PromoCheckBoxWrapper,
   SearchInput,
   Wrapper,
 } from './Navbar.styles';
@@ -85,23 +87,27 @@ const Navbar = () => {
                 <BiSearchAlt2Icon />
               )}
             </SearchInput>
+            <ActiveCheckBoxWrapper>
+              <input
+                type="checkbox"
+                id="active"
+                name="active"
+                checked={searchCheckbox.active}
+                onChange={(e) => handleCheckbox(e)}
+              />
+              <label htmlFor="active"> Active</label>
+            </ActiveCheckBoxWrapper>
+            <PromoCheckBoxWrapper>
+              <input
+                type="checkbox"
+                id="promo"
+                name="promo"
+                checked={searchCheckbox.promo}
+                onChange={(e) => handleCheckbox(e)}
+              />
+              <label htmlFor="promo"> Promo</label>
+            </PromoCheckBoxWrapper>
 
-            <input
-              type="checkbox"
-              id="active"
-              name="active"
-              checked={searchCheckbox.active}
-              onChange={(e) => handleCheckbox(e)}
-            />
-            <label htmlFor="active"> Active</label>
-            <input
-              type="checkbox"
-              id="promo"
-              name="promo"
-              checked={searchCheckbox.promo}
-              onChange={(e) => handleCheckbox(e)}
-            />
-            <label htmlFor="promo"> Promo</label>
           </InputWrapper>
 
           <AccountWrapper>

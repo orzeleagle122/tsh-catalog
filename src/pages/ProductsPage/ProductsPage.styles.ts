@@ -5,6 +5,12 @@ export const CardsWrapper = styled.div`
   flex-wrap: wrap;
   justify-content: space-between;
 
+  @media (max-width: 375px) {
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+  }
+
   // https://dev.to/stel/a-little-trick-to-left-align-items-in-last-row-with-flexbox-230l
   i {
     width: 288px;

@@ -5,7 +5,7 @@ export const Wrapper = styled.div`
   display: flex;
   width: 100%;
   height: 100vh !important;
-  gap: 100px;
+  gap: 150px;
   background-color: #fff;
 `;
 
@@ -45,6 +45,30 @@ export const FormContainer = styled.div`
     display: flex;
     flex-direction: column;
     max-width: 500px;
+
+    label {
+      margin-bottom: 8px;
+    }
+    
+    p{
+      font-weight: 600;
+      font-size: 14px;
+      line-height: 16px;
+      text-decoration-line: underline;
+      color: #9194A5;
+      cursor: pointer;
+      margin-top: 16px;
+      align-self: flex-start;
+    }
+  }
+
+  p {
+    color: red;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 20px;
   }
 
   input {

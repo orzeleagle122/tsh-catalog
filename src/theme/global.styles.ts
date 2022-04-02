@@ -6,10 +6,16 @@ const GlobalStyle = createGlobalStyle`
     padding: 0;
     box-sizing: border-box;
     font-family: 'Nunito', sans-serif;
+    
+    a {
+      text-decoration: none !important;
+      color: inherit;
+    }
   }
   body {
     background-color: #F2F2F2;
   },
+
 `;
 
 export default GlobalStyle;

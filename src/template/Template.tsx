@@ -6,10 +6,14 @@ const PageWrapper = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
+  background-color: #F2F2F2;
+  
 `;
 
 const Wrapper = styled.div`
   width: 1248px;
+  background-color: #F2F2F2;
+  margin-top: 50px;
 `;
 
 interface TemplateProps {

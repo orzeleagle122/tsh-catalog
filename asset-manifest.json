@@ -1,0 +1,16 @@
+{
+  "files": {
+    "main.css": "/tsh-catalog/static/css/main.e6c13ad2.css",
+    "main.js": "/tsh-catalog/static/js/main.89fc171b.js",
+    "static/js/787.b670f97a.chunk.js": "/tsh-catalog/static/js/787.b670f97a.chunk.js",
+    "static/media/login.png": "/tsh-catalog/static/media/login.738dfa6553fa97f33899.png",
+    "index.html": "/tsh-catalog/index.html",
+    "main.e6c13ad2.css.map": "/tsh-catalog/static/css/main.e6c13ad2.css.map",
+    "main.89fc171b.js.map": "/tsh-catalog/static/js/main.89fc171b.js.map",
+    "787.b670f97a.chunk.js.map": "/tsh-catalog/static/js/787.b670f97a.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.e6c13ad2.css",
+    "static/js/main.89fc171b.js"
+  ]
+}
